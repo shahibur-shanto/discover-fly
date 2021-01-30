@@ -30,6 +30,16 @@ function calculateSubTotal(classType) {
     }
 }
 
+function confirmBook(ticketType) {
+    if (ticketType == "first") {
+        const ticket = document.getElementById(ticketType + "-class-ticket").value;
+        return ticket;
+    }
+    if (ticketType == "economy") {
+        const ticket = document.getElementById(ticketType + "-class-ticket").value;
+        return ticket;
+    }
+}
 document.getElementById("first-class-increase").addEventListener('click', function () {
     handleIncreaseOrDecrease(true, "first");
 });
@@ -48,13 +58,15 @@ document.getElementById("economy-class-decrease").addEventListener('click', func
 
 document.getElementById("confirm").addEventListener("click", function () {
     const amount = document.getElementById("total").innerText;
-    const firstClassTicket = document.getElementById("first-class-ticket").value;
-    const economyClassTicket = document.getElementById("economy-class-ticket").value;
-    if (amount == "00" || amount=="0") {
+    const firstClassTicket = confirmBook("first");
+    const economyClassTicket = confirmBook("economy");
+    //const firstClassTicket = document.getElementById("first-class-ticket").value;
+    //const economyClassTicket = document.getElementById("economy-class-ticket").value;
+    if (amount == "00" || amount == "0") {
         window.alert("please select at least one ticket sir.");
     }
     else {
-        window.confirm("Please Confirm Your " + firstClassTicket + " first class ticket and " + economyClassTicket + " economy class ticket for Total Amount $" + amount+" including VAT");
+        window.confirm("Please Confirm Your " + firstClassTicket + " first class ticket and " + economyClassTicket + " economy class ticket for Total Amount $" + amount + " including VAT");
     }
 });
 
