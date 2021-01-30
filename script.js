@@ -12,9 +12,9 @@ function handleIncreaseOrDecrease(isIncrease, classType) {
     const firstSubTotal = calculateSubTotal("first");
     const economySubTotal = calculateSubTotal("economy");
     document.getElementById("sub-total").innerText = firstSubTotal + economySubTotal;
-    const vat = Math.round((firstSubTotal+economySubTotal)*.1);
+    const vat = Math.round((firstSubTotal + economySubTotal) * .1);
     document.getElementById("vat").innerText = vat;
-    document.getElementById("total").innerText = firstSubTotal + economySubTotal+vat;
+    document.getElementById("total").innerText = firstSubTotal + economySubTotal + vat;
 }
 
 function calculateSubTotal(classType) {
@@ -46,11 +46,16 @@ document.getElementById("economy-class-decrease").addEventListener('click', func
     handleIncreaseOrDecrease(false, "economy");
 });
 
-document.getElementById("confirm").addEventListener("click",function(){
+document.getElementById("confirm").addEventListener("click", function () {
     const amount = document.getElementById("total").innerText;
     const firstClassTicket = document.getElementById("first-class-ticket").value;
     const economyClassTicket = document.getElementById("economy-class-ticket").value;
-    window.confirm("Please Confirm Your "+ firstClassTicket + " first class ticket and " + economyClassTicket +" economy class ticket for Total Amount $"+amount);
+    if (amount == "00" || amount=="0") {
+        window.alert("please select at least one ticket sir.");
+    }
+    else {
+        window.confirm("Please Confirm Your " + firstClassTicket + " first class ticket and " + economyClassTicket + " economy class ticket for Total Amount $" + amount+" including VAT");
+    }
 });
 
 
